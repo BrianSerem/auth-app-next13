@@ -1,6 +1,6 @@
 import Link from "next/link"
 
-const RegisterForm = () => {
+const RegisterForm = ({ user, setUser, error, onSubmit, submitting }) => {
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -11,7 +11,7 @@ const RegisterForm = () => {
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form className="space-y-6" onSubmit={() => { }}>
+        <form className="space-y-6" onSubmit={onSubmit}>
           <div>
             <label
               className="block text-sm font-medium leading-6 text-gray-900">
@@ -23,7 +23,7 @@ const RegisterForm = () => {
                 name="email"
                 type="email"
                 autoComplete="email"
-                onChange={(e) => { }}
+                onChange={(e) => setUser({ ...user, email: e.target.value })}
                 required className="px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
@@ -36,9 +36,9 @@ const RegisterForm = () => {
             <div className="mt-2">
               <input
                 id="password"
-                onChange={(e) => { }}
+                onChange={(e) => setUser({ ...user, password1: e.target.value })}
                 name="password"
-                required='true'
+                required={true}
                 className="px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
@@ -48,21 +48,21 @@ const RegisterForm = () => {
             <div className="mt-2">
               <input
                 id="password"
-                onChange={(e) => { }}
-                required='true'
+                onChange={(e) => setUser({ ...user, password2: e.target.value })}
+                required={true}
                 name="password"
                 className="px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
 
           </div>
-
+            { error && <p className="text-red-600"> {error}</p>}
           <div>
             <button type='submit'
               className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
               Sign Up
             </button>
-            <Link href='/login' > <p >Log In</p> </Link>
+            <p> Already have an account?</p><Link href='/login' > <button className="bg-grey-500 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"> Log In </button> </Link>
           </div>
         </form>
 

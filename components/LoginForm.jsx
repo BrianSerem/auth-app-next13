@@ -52,7 +52,7 @@ const LoginForm = () => {
               className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
               Log In
             </button>
-            <Link href='/sign-up' > <p >Sign Up</p> </Link>
+            <p> No account? </p><Link href='/sign-up' > <button className="bg-grey-500 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"> Sign Up </button> </Link>
           </div>
         </form>
 
