@@ -1,15 +1,9 @@
-import React from 'react'
-
+'use client'
+import LoginForm from "@/components/LoginForm"
 const page = () => {
   return (
-    <div>
-      login here
-    </div>
+    < LoginForm />
   )
-}
-
-export  const metadata = {
-  title: 'login page'
 }
 
 export default page

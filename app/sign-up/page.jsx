@@ -1,15 +1,10 @@
-import React from 'react'
+'use client'
 
+import RegisterForm from "@/components/RegisterForm"
 const page = () => {
   return (
-    <div>
-      sign up here
-    </div>
+    <RegisterForm />
   )
 }
-
-export  const metadata = {
-    title: 'sign up page'
-  }
 
 export default page
