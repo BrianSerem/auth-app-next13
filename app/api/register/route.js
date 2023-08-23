@@ -1,5 +1,6 @@
 import { connectToDB } from '@/utils/database';
 import User from '@/models/user';
+import bcrypt from 'bcryptjs';
 
 export async function POST(request) {
 
@@ -14,9 +15,10 @@ export async function POST(request) {
 
         })
         if (userExists.length < 1) {
+            const hashedPassword = await bcrypt.hash(password, 10)
             await User.create({
                 email,
-                password
+                password : hashedPassword
             })
             return new Response('user created', {
                 status: 201

@@ -1,6 +1,7 @@
 'use client'
 import { useState } from "react"
 import RegisterForm from "@/components/RegisterForm"
+import { useRouter } from "next/navigation"
 
 
 const page = () => {
@@ -12,10 +13,12 @@ const page = () => {
   });
   const [error, setError] = useState('');
   const [registering, setRegistering] = useState(false)
+  const router = useRouter()
 
   const onSubmit = async (e) => {
     e.preventDefault()
     setRegistering(true)
+    setError('')
     if (user.password1 !== user.password2) {
       setError('Passwords do not match, please check again')
       return
@@ -38,7 +41,12 @@ const page = () => {
           const error = await res.json()
           setError(error.message)
           setRegistering(false)
+          return
         }
+        setRegistering(false)
+        router.push('/login')
+
+
 
       } catch (error) {
       }
@@ -54,7 +62,9 @@ const page = () => {
       setUser={setUser}
       user={user}
       error={error}
-      registering={registering} />
+      registering={registering}
+      setError={setError}
+    />
   )
 }
 

@@ -1,6 +1,6 @@
 import Link from "next/link"
 
-const RegisterForm = ({ user, setUser, error, onSubmit, submitting , registering}) => {
+const RegisterForm = ({ user, setUser, error, setError, onSubmit, submitting , registering}) => {
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
