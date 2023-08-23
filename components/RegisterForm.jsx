@@ -1,6 +1,6 @@
 import Link from "next/link"
 
-const RegisterForm = ({ user, setUser, error, onSubmit, submitting }) => {
+const RegisterForm = ({ user, setUser, error, onSubmit, submitting , registering}) => {
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -60,7 +60,7 @@ const RegisterForm = ({ user, setUser, error, onSubmit, submitting }) => {
           <div>
             <button type='submit'
               className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-              Sign Up
+              {registering ? 'Registering...' : 'Register'}
             </button>
             <p> Already have an account?</p><Link href='/login' > <button className="bg-grey-500 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"> Log In </button> </Link>
           </div>

@@ -1,4 +1,5 @@
-import { connectToDB } from '@utils/database'
+import { connectToDB } from '@/utils/database';
+import User from '@/models/user';
 
 export async function POST(request) {
 
@@ -6,15 +7,32 @@ export async function POST(request) {
 
     try {
 
-        await connectToDB();
-        
+        await connectToDB()
 
-        return new Response('user created', {
-            status: 201
+        const userExists = await User.find({
+            email: email
+
         })
+        if (userExists.length < 1) {
+            await User.create({
+                email,
+                password
+            })
+            return new Response('user created', {
+                status: 201
+            })
+
+        } else {
+            return new Response(JSON.stringify({
+                message: 'Email exists already, try logging in'
+            }), {
+                status: 403,
+            })
+        }
+
     } catch (error) {
         return new Response('error creating user', {
-            status: 400
+            status: 404
         })
     }
 }

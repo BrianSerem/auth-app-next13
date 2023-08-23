@@ -11,9 +11,11 @@ const page = () => {
     password2: ''
   });
   const [error, setError] = useState('');
+  const [registering, setRegistering] = useState(false)
 
   const onSubmit = async (e) => {
     e.preventDefault()
+    setRegistering(true)
     if (user.password1 !== user.password2) {
       setError('Passwords do not match, please check again')
       return
@@ -21,7 +23,7 @@ const page = () => {
     } else {
       // Do some logic to sign up user then redirect them to their dashboard
       try {
-        const response = await fetch('/api/register', {
+        const res = await fetch('/api/register', {
           method: 'POST',
           headers: {
             'Content-Type': 'Application/json'
@@ -31,19 +33,29 @@ const page = () => {
             password: user.password1
           })
         });
-        console.log(response)
+
+        if (res.status !== 201) {
+          const error = await res.json()
+          setError(error.message)
+          setRegistering(false)
+        }
 
       } catch (error) {
-        console.log(error)
       }
 
 
-    }}
-
-
-    return (
-      <RegisterForm onSubmit={onSubmit} setUser={setUser} user={user} error={error} />
-    )
+    }
   }
 
-  export default page
+
+  return (
+    <RegisterForm
+      onSubmit={onSubmit}
+      setUser={setUser}
+      user={user}
+      error={error}
+      registering={registering} />
+  )
+}
+
+export default page
