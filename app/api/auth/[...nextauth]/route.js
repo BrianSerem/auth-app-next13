@@ -1,4 +1,4 @@
-import { connectMongoDB } from "@/utils/database";
+import { connectToDB } from "@/utils/database";
 import User from "@/models/user";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -14,7 +14,7 @@ export const authOptions = {
         const { email, password } = credentials;
 
         try {
-          await connectMongoDB();
+          await connectToDB();
           const user = await User.findOne({ email });
 
           if (!user) {
@@ -26,10 +26,10 @@ export const authOptions = {
           if (!passwordsMatch) {
             return null;
           }
-          
+
           return user;
         } catch (error) {
-          // console.log("Error: ", error);
+          console.log(error)
         }
       },
     }),

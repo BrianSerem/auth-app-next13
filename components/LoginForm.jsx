@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 
-const LoginForm = ({user, setUser, error, setError, handleSubmit}) => {
+const LoginForm = ({user, setUser, error, setError, handleSubmit, loggingIn}) => {
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -24,7 +24,7 @@ const LoginForm = ({user, setUser, error, setError, handleSubmit}) => {
                 name="email"
                 type="email"
                 autoComplete="email"
-                onChange={(e) =>  {}}
+                onChange={(e) =>  setUser({...user, email: e.target.value})}
                 required className="px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
@@ -40,7 +40,7 @@ const LoginForm = ({user, setUser, error, setError, handleSubmit}) => {
             <div className="mt-2">
               <input
                 id="password"
-                onChange={(e) => { }}
+                onChange={(e) =>  setUser({...user, password: e.target.value})}
                 name="password"
                 className="px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
@@ -50,7 +50,7 @@ const LoginForm = ({user, setUser, error, setError, handleSubmit}) => {
           <div>
             <button type='submit'
               className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-              Log In
+              {loggingIn ? 'Logging In....' : 'Log In'}
             </button>
             <p> No account? </p><Link href='/sign-up' > <button className="bg-grey-500 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"> Sign Up </button> </Link>
           </div>
