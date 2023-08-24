@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 
-const LoginForm = () => {
+const LoginForm = ({user, setUser, error, setError, handleSubmit}) => {
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -12,7 +12,7 @@ const LoginForm = () => {
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form className="space-y-6" onSubmit={() => {}}>
+        <form className="space-y-6" onSubmit={handleSubmit}>
           <div>
             <label
               className="block text-sm font-medium leading-6 text-gray-900">
@@ -46,7 +46,7 @@ const LoginForm = () => {
               />
             </div>
           </div>
-
+          { error && <p className="text-red-600"> {error}</p>}
           <div>
             <button type='submit'
               className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
