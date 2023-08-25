@@ -3,14 +3,19 @@ import { useState } from "react"
 import RegisterForm from "@/components/RegisterForm"
 import { useRouter } from "next/navigation"
 
+const SignUpPage =  () => {
 
-const page = () => {
+  // const getSession = async () => {
+  //   const session = await getServerSession(authOptions)
+  //   return session
+  // }
 
   const [user, setUser] = useState({
     email: '',
     password1: '',
     password2: ''
   });
+
   const [error, setError] = useState('');
   const [registering, setRegistering] = useState(false)
   const router = useRouter()
@@ -54,8 +59,6 @@ const page = () => {
 
     }
   }
-
-
   return (
     <RegisterForm
       onSubmit={onSubmit}
@@ -68,4 +71,4 @@ const page = () => {
   )
 }
 
-export default page
+export default SignUpPage
