@@ -22,6 +22,7 @@ const LoginPage = () => {
     try {
 
        const res = await signIn('credentials', {...user, redirect : false})
+       console.log(res)
        if(res.error){
         setError('Invalid Credentials, please check again')
         setLoggingIn(false)
